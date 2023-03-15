@@ -67,6 +67,9 @@ class AuthController extends Controller
     }
 
     public function cerrarSesion() {
+        $user = User::find(Auth::user()->id);
+        $user->status = false;
+        $user->save();
         Session::flush();
         Auth::logout();
 
